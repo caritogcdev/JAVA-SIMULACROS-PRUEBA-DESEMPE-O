@@ -2,6 +2,7 @@ package controller;
 
 import entity.Especialidad;
 import model.EspecialidadModel;
+import utils.Utils;
 
 import javax.swing.*;
 
@@ -13,11 +14,12 @@ public class EspecialidadController {
     * vamos a crear un méto que se encargue de instanciarlo para no estarlo
     * instanciando todas las veces
     */
-    /*
+
+    // En este caso, este lo estamos usando en otro método para eliminar
     public static EspecialidadModel instanciaModel(){
         return new EspecialidadModel();
     }
-     */
+
 
     // Método para crear una especialidad
     public static void create(){
@@ -46,7 +48,7 @@ public class EspecialidadController {
     // Método para obtener todas las especialidades
     public static void getAll(){
         EspecialidadModel objModel = new EspecialidadModel();
-        String listEspecialidad = " LISTA DE RESGISTROS DE ESPECIALIDAD \n";
+        String listEspecialidad = " LISTA DE REGISTROS DE LAS ESPECIALIDADES \n";
 
         //Vamos a utilizar la lista de find all
         for (Object iterador: objModel.findAll()) {
@@ -65,7 +67,7 @@ public class EspecialidadController {
     // Método para listar todas las especialidades
     public static String getAllString(){
         EspecialidadModel objModel = new EspecialidadModel();
-        String listEspecialidad = " LISTA DE RESGISTROS DE ESPECIALIDAD \n";
+        String listEspecialidad = " LISTA DE REGISTROS DE LAS ESPECIALIDADES \n";
 
         //Vamos a utilizar la lista de find all
         for (Object iterador: objModel.findAll()) {
@@ -127,12 +129,56 @@ public class EspecialidadController {
             // Eliminar
             if (confirm == 0) objEspecialidadModel.delete(objEspecialidad);
         }
+    }
 
-
+    // Método para eliminar una especialidad utilizando un select
+    public static void deleteWithSelect(){
         /*
         Vamos a habilitar el JOptionpane como un select no recibe listas o arraylists, solo recibe arrays
         entonces vamos a crearnos una utilidad que sea reutilizable y que nos permita cambiar y nos
         permita convertir una lista a un array.
          */
+
+        /* Utilizamos la clase utils y el método que creamos que es listToArray()
+         * y el array que le vamos a enviar
+         */
+        Object[] options = Utils.listToArray(instanciaModel().findAll());
+
+        Especialidad objSeleccionado = (Especialidad) JOptionPane.showInputDialog(
+                null,
+                "Selecciona una especialidad para eliminar",
+                "",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options, // opciones que va a tener
+                options[0] // opción por defecto que va a tener
+        );
+        instanciaModel().delete(objSeleccionado);
     }
+
+    // Método para actualizar una especialidad utilizando un select
+    public static void updateWithSelect(){
+        /*
+        * Reutilizamos lo que ya hicimos en el método deleteWithSelect(),
+        * vamos a convertir la lista total de especialidades en un arrayList
+        * */
+        Object[] options = Utils.listToArray(instanciaModel().findAll());
+        Especialidad objSeleccionado = (Especialidad) JOptionPane.showInputDialog(
+                null,
+                "Selecciona una especialidad para actualizar",
+                "",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options, // opciones que va a tener
+                options[0] // opción por defecto que va a tener
+        );
+
+        // Pedirle los datos al usuario
+        objSeleccionado.setNombre(JOptionPane.showInputDialog(null,"Ingresa el nuevo nombre de la especialidad:", objSeleccionado.getNombre())); // Después del message va el nombre por defecto
+        objSeleccionado.setDescripcion(JOptionPane.showInputDialog(null,"Ingresa la nueva descripción de la especialidad", objSeleccionado.getDescripcion()));
+
+        // Utilizamos el método que ua tenemos que nos instancia el modelo
+        instanciaModel().update(objSeleccionado);
+    }
+
 }

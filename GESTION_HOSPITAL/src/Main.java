@@ -45,10 +45,12 @@ public class Main {
                                 EspecialidadController.getAll();
                                 break;
                             case "3":
-                                EspecialidadController.update();
+                                //EspecialidadController.update();
+                                EspecialidadController.updateWithSelect();
                                 break;
                             case "4":
-                                EspecialidadController.delete();
+                                //EspecialidadController.delete();
+                                EspecialidadController.deleteWithSelect();
                                 break;
                         }
 

@@ -8,7 +8,10 @@ public class Especialidad {
     public Especialidad() {
     }
     public Especialidad(String nombre, String descripcion) {
-        // eliminamos el id del constructor porque quiero que solo me permita llenar el nombre y descripción
+        /*
+        * eliminamos el id del constructor porque quiero que solo me permita llenar el nombre
+        * y descripción, ya que el id es autoincrementable
+        */
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
@@ -38,11 +41,8 @@ public class Especialidad {
     }
     @Override
     public String toString() {
-        return "Especialidad{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+        return
+                " nombre: '" + nombre + '\'' +
+                " descripcion: '" + descripcion + '\'';
     }
-
 }

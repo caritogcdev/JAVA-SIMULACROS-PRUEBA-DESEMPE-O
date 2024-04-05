@@ -175,12 +175,12 @@ public class EspecialidadModel implements CRUD {
             objPrepare.setInt(3, objEspecialidad.getId());
 
             //7. Ejecutar el query
-
+            // Utilizamos executeUpdate() para que nos devuelva el número de filas afectadas
             int totalRowAffected = objPrepare.executeUpdate();
 
             if (totalRowAffected > 0){
                 isUpdated = true;
-                JOptionPane.showMessageDialog(null, "Se actualizó el registro correctamente");
+                JOptionPane.showMessageDialog(null, "Se actualizó la especialidad correctamente");
             }
 
         } catch ( Exception e) {
@@ -189,7 +189,6 @@ public class EspecialidadModel implements CRUD {
             // 8. Cerramos la conexión
             ConfigDB.closeConnection();
         }
-
         return isUpdated;
     }
 
@@ -222,7 +221,7 @@ public class EspecialidadModel implements CRUD {
             //Si las filas afectadas fueron mayor a cero quiere decir que si eliminó algo
             if (totalAffectedRows > 0) {
                 isDeleted = true;
-                JOptionPane.showMessageDialog(null, "Se eliminó el registro correctamente");
+                JOptionPane.showMessageDialog(null, "Se eliminó la especialidad correctamente");
             }
 
         } catch (Exception e) {
