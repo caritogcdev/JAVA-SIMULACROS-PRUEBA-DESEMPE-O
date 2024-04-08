@@ -1,5 +1,6 @@
 import controller.AvionController;
 import controller.PasajeroController;
+import controller.ReservacionController;
 import controller.VueloController;
 import database.ConfigDB;
 
@@ -107,6 +108,35 @@ public class Main {
                                 break;
                             case "4":
                                 PasajeroController.delete();
+                                break;
+                        }
+
+                    } while (!option2.equals("5"));
+                    break;
+
+                case "4":
+                    do {
+                        option2 = JOptionPane.showInputDialog("""
+                                1. Crear Reservación.
+                                2. Listar las Reservaciones.
+                                3. Actualizar Reservación.
+                                4. Eliminar Reservación.
+                                5. Salir.
+                                                                
+                                Ingrese una opción:
+                                """);
+                        switch (option2) {
+                            case "1":
+                                ReservacionController.insert();
+                                break;
+                            case "2":
+                                ReservacionController.getAll();
+                                break;
+                            case "3":
+                                ReservacionController.update();
+                                break;
+                            case "4":
+                                ReservacionController.delete();
                                 break;
                         }
 
