@@ -76,7 +76,7 @@ public class PacienteModel implements CRUD {
             //4. Preparamos el statement
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
-            //5. Vamos el query con executeQuery() para que nos devuelva todos los registros que están en la base de datos
+            //5. Vamos a ejecutar el query con executeQuery() para que nos devuelva todos los registros que están en la base de datos
             ResultSet objResult = objPrepare.executeQuery();
 
             while (objResult.next()){

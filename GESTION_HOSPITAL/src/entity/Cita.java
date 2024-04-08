@@ -3,24 +3,32 @@ package entity;
 import java.sql.Date;
 import java.sql.Time;
 
+/*
+* Esta tabla tiene doble inner join
+* */
 public class Cita {
     private int id;
-    private int id_paciente;
-    private int id_medico;
-    private Date fecha_cita;
-    private Time hora_cita;
+    private String fechaCita;
+    private String horaCita;
     private String motivo;
+    private int idPaciente;
+    private int idMedico;
+
+
+    private Paciente objPaciente;
+    private Medico objMedico;
 
     public Cita() {
     }
 
-    public Cita(int id, int id_paciente, int id_medico, Date fecha_cita, Time hora_cita, String motivo) {
-        this.id = id;
-        this.id_paciente = id_paciente;
-        this.id_medico = id_medico;
-        this.fecha_cita = fecha_cita;
-        this.hora_cita = hora_cita;
+    public Cita(String fechaCita, String horaCita, String motivo, int idPaciente, int idMedico, Paciente objPaciente, Medico objMedico) {
+        this.fechaCita = fechaCita;
+        this.horaCita = horaCita;
         this.motivo = motivo;
+        this.idPaciente = idPaciente;
+        this.idMedico = idMedico;
+        this.objPaciente = objPaciente;
+        this.objMedico = objMedico;
     }
 
     public int getId() {
@@ -31,36 +39,20 @@ public class Cita {
         this.id = id;
     }
 
-    public int getId_paciente() {
-        return id_paciente;
+    public String getFechaCita() {
+        return fechaCita;
     }
 
-    public void setId_paciente(int id_paciente) {
-        this.id_paciente = id_paciente;
+    public void setFechaCita(String fechaCita) {
+        this.fechaCita = fechaCita;
     }
 
-    public int getId_medico() {
-        return id_medico;
+    public String getHoraCita() {
+        return horaCita;
     }
 
-    public void setId_medico(int id_medico) {
-        this.id_medico = id_medico;
-    }
-
-    public Date getFecha_cita() {
-        return fecha_cita;
-    }
-
-    public void setFecha_cita(Date fecha_cita) {
-        this.fecha_cita = fecha_cita;
-    }
-
-    public Time getHora_cita() {
-        return hora_cita;
-    }
-
-    public void setHora_cita(Time hora_cita) {
-        this.hora_cita = hora_cita;
+    public void setHoraCita(String horaCita) {
+        this.horaCita = horaCita;
     }
 
     public String getMotivo() {
@@ -71,15 +63,46 @@ public class Cita {
         this.motivo = motivo;
     }
 
+    public int getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
+    }
+
+    public int getIdMedico() {
+        return idMedico;
+    }
+
+    public void setIdMedico(int idMedico) {
+        this.idMedico = idMedico;
+    }
+
+    public Paciente getObjPaciente() {
+        return objPaciente;
+    }
+
+    public void setObjPaciente(Paciente objPaciente) {
+        this.objPaciente = objPaciente;
+    }
+
+    public Medico getObjMedico() {
+        return objMedico;
+    }
+
+    public void setObjMedico(Medico objMedico) {
+        this.objMedico = objMedico;
+    }
+
     @Override
     public String toString() {
         return "Cita{" +
-                "id=" + id +
-                ", id_paciente=" + id_paciente +
-                ", id_medico=" + id_medico +
-                ", fecha_cita=" + fecha_cita +
-                ", hora_cita=" + hora_cita +
+                "fechaCita='" + fechaCita + '\'' +
+                ", horaCita='" + horaCita + '\'' +
                 ", motivo='" + motivo + '\'' +
+                ", Paciente=" + objPaciente.getNombre() +
+                ", Medico=" + objMedico.getNombre() +
                 '}';
     }
 }

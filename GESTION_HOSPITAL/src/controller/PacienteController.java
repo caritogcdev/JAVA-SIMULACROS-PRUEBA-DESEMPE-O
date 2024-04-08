@@ -99,7 +99,7 @@ public class PacienteController {
 
         // foreach de tipo Object y va a recorrer un temporal sobre la lista que nos llega como parámetro
         for (Object temp : list) {
-            // Convertir objMedico a Paciente ese temporal que se está recorriendo en cada iteracion
+            // Convertir objPaciente a Paciente ese temporal que se está recorriendo en cada iteracion
             Paciente objPaciente = (Paciente) temp;
             listaString += objPaciente.toString() + "\n";
         }

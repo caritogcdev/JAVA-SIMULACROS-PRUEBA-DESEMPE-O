@@ -1,3 +1,4 @@
+import controller.CitaController;
 import controller.EspecialidadController;
 import controller.MedicoController;
 import controller.PacienteController;
@@ -108,6 +109,35 @@ public class Main {
                                 break;
                             case "4":
                                 PacienteController.delete();
+                                break;
+                        }
+
+                    } while (!option2.equals("5"));
+                    break;
+
+                case "4":
+                    do {
+                        option2 =  JOptionPane.showInputDialog("""
+                                1. Crear Cita.
+                                2. Listar Citas.
+                                3. Actualizar Cita.
+                                4. Eliminar Cita.
+                                5. Salir.
+                                
+                                Ingrese una opción:
+                                """);
+                        switch (option2){
+                            case "1":
+                                CitaController.insert();
+                                break;
+                            case "2":
+                                CitaController.getAll();
+                                break;
+                            case "3":
+                                CitaController.update();
+                                break;
+                            case "4":
+                                CitaController.delete();
                                 break;
                         }
 
