@@ -1,10 +1,10 @@
 import controller.EspecialidadController;
+import controller.MedicoController;
+import controller.PacienteController;
 import database.ConfigDB;
 
 import javax.swing.*;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
 
@@ -31,8 +31,8 @@ public class Main {
                         option2 = JOptionPane.showInputDialog("""
                                 1. Crear Espacialidad.
                                 2. Listar las Especialidades.
-                                3. Actualizar las Especialidades.
-                                4. Eliminar las Especialidades.
+                                3. Actualizar Especialidad.
+                                4. Eliminar Especialidad.
                                 5. Salir.
                                 
                                 Ingrese una opción:
@@ -55,16 +55,66 @@ public class Main {
                         }
 
                     } while (!option2.equals("5"));
-
                     break;
 
+                case "2":
+                    do {
+                        option2 =  JOptionPane.showInputDialog("""
+                                1. Crear Médico.
+                                2. Listar Médicos.
+                                3. Actualizar Médico.
+                                4. Eliminar Médico.
+                                5. Salir.
+                                
+                                Ingrese una opción:
+                                """);
+                        switch (option2){
+                            case "1":
+                                MedicoController.insert();
+                                break;
+                            case "2":
+                                MedicoController.getAll();
+                                break;
+                            case "3":
+                                MedicoController.update();
+                                break;
+                            case "4":
+                                MedicoController.delete();
+                                break;
+                        }
+                    } while (!option2.equals("5"));
+                    break;
+
+                case "3":
+                    do {
+                        option2 =  JOptionPane.showInputDialog("""
+                                1. Crear Paciente.
+                                2. Listar Pacientes.
+                                3. Actualizar Paciente.
+                                4. Eliminar Paciente.
+                                5. Salir.
+                                
+                                Ingrese una opción:
+                                """);
+                        switch (option2){
+                            case "1":
+                                PacienteController.insert();
+                                break;
+                            case "2":
+                                PacienteController.getAll();
+                                break;
+                            case "3":
+                                PacienteController.update();
+                                break;
+                            case "4":
+                                PacienteController.delete();
+                                break;
+                        }
+
+                    } while (!option2.equals("5"));
+                    break;
             }
 
         } while (!option.equals("5"));
-
-
-
-
-
     }
 }
