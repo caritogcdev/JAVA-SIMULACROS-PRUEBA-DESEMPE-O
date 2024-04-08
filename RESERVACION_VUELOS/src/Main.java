@@ -1,4 +1,7 @@
+import controller.AvionController;
 import database.ConfigDB;
+
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,5 +11,49 @@ public class Main {
         ConfigDB.openConnection();
         ConfigDB.closeConnection();
 
+        String option = "", option2 = "";
+
+        do {
+            option = JOptionPane.showInputDialog("""
+                    1. Administrar Aviones.
+                    2. Administrar Vuelos.
+                    3. Administrar Pasajeros.
+                    4. Administrar Reservaciones.
+                    5. Salir.
+                    
+                    Ingrese una opción:
+                    """);
+            switch (option) {
+                case "1":
+                    do {
+                        option2 = JOptionPane.showInputDialog("""
+                                1. Crear Avión.
+                                2. Listar los Aviones.
+                                3. Actualizar Avión.
+                                4. Eliminar Avión.
+                                5. Salir.
+                                                                
+                                Ingrese una opción:
+                                """);
+                        switch (option2) {
+                            case "1":
+                                AvionController.insert();
+                                break;
+                            case "2":
+                                AvionController.getAll();
+                                break;
+                            case "3":
+                                AvionController.update();
+                                break;
+                            case "4":
+                                AvionController.delete();
+                                break;
+                        }
+
+                    } while (!option2.equals("5"));
+                    break;
+            }
+
+        } while (!option.equals("5"));
     }
 }
