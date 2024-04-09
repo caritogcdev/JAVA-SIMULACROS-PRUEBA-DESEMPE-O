@@ -1,0 +1,62 @@
+CREATE TABLE especialidad (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(255) NOT NULL,
+descripcion TEXT 
+);
+
+CREATE TABLE medico (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(255) NOT NULL,
+apellidos VARCHAR(255) NOT NULL,
+# Creamos el campo que guardará la llave foránea de la llave primaria del padre o de la 
+# tabla relacionada con medico. En este caso recordemos que medico tiene una relacion con 
+# especialidad, donde un medico solo puede tener una especialidad pero esa especialidad
+# puede estar en muchos medicos
+# Por lo tanto, voy a crear el atributo que va a guardar esa relacion 
+id_especialidad INT,
+CONSTRAINT fk_id_especialidad FOREIGN KEY (id_especialidad) REFERENCES especialidad(id) ON DELETE CASCADE
+# Con la sentencia ON DELETE CASCADE si se elimna una especialidad, se van a eliminar
+# todos los medicos que tengan esa especialidad, permite elimar registros en cascada
+# para que el medico no vaya a quedar con su especialidad en nulo
+);
+
+CREATE TABLE paciente (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(255) NOT NULL,
+apellidos VARCHAR(255) NOT NULL,
+fecha_nacimiento DATE NOT NULL,
+documento_identidad VARCHAR(20) UNIQUE NOT NULL
+);
+
+# Tabla intermedia que guarda la relación entre medico y paciente
+CREATE TABLE cita (
+id INT AUTO_INCREMENT PRIMARY KEY,
+fecha_cita DATE NOT NULL,
+hora_cita TIME NOT NULL,
+motivo VARCHAR (255),
+id_paciente INT,
+id_medico INT,
+CONSTRAINT fk_id_paciente FOREIGN KEY (id_paciente) REFERENCES paciente (id) ON DELETE CASCADE,
+CONSTRAINT fk_id_medico FOREIGN KEY (id_medico) REFERENCES medico (id) ON DELETE CASCADE
+);
+
+
+SELECT * FROM especialidad;
+
+SELECT * FROM medico # Nombre de la tabla principal
+INNER JOIN 
+especialidad # Tabla con la que quier hacer la unión
+ON 
+especialidad.id # Llave primaria de especialidad que es la fuerte
+= medico.id_especialidad; # Llave foránea de medico que es la debil 
+
+SELECT * FROM medico
+INNER JOIN especialidad ON especialidad.id = medico.id_especialidad;
+
+SELECT * FROM paciente;
+
+SELECT * FROM cita;
+
+SELECT * FROM cita
+INNER JOIN paciente ON paciente.id = cita.id_paciente
+INNER JOIN medico ON medico.id = cita.id_medico;
